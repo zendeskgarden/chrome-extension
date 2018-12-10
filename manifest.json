@@ -1,0 +1,36 @@
+{
+  "name": "Garden Audit",
+  "description": "Visually audit web pages for use of the Zendesk Garden design system.",
+  "version": "0.0.1",
+  "permissions": ["activeTab", "commands"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Garden Audit"
+  },
+  "commands": {
+    "execute-garden-audit": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+G",
+        "mac": "MacCtrl+Shift+G"
+      },
+      "description": "Performs audit for Garden components"
+    },
+    "remove-garden-audit": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "MacCtrl+Shift+H"
+      },
+      "description": "Remove audits from screen"
+    }
+  },
+  "icons": {
+    "16": "images/garden16.png",
+    "32": "images/garden32.png",
+    "48": "images/garden48.png",
+    "128": "images/garden128.png"
+  },
+  "manifest_version": 2
+}
