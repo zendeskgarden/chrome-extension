@@ -71,8 +71,8 @@ function init() {
     element.style.top = `${clientRect.y}px`;
     element.style.width = `${clientRect.width}px`;
     element.style.height = `${clientRect.height}px`;
-    element.style.backgroundColor = "#038153";
-    element.style.opacity = 0.25;
+    element.style.backgroundColor = "#67C34B";
+    element.style.opacity = 0.3;
     element.style.zIndex = 10000;
 
     return element;
@@ -80,6 +80,11 @@ function init() {
 
   removeAuditOverlays();
   addAuditOverlays(document);
+
+  // TODO enable iframe usage
+  // document.querySelectorAll("iframe").forEach(item => {
+  //   addAuditOverlays(item.contentWindow.document);
+  // });
 }
 
 init();
