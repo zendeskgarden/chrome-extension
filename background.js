@@ -9,9 +9,5 @@ chrome.commands.onCommand.addListener(function(command) {
     chrome.tabs.executeScript({
       file: "execute-garden-audit.js"
     });
-  } else {
-    chrome.tabs.executeScript({
-      file: "remove-garden-audit.js"
-    });
   }
 });

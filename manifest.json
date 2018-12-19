@@ -17,13 +17,6 @@
         "mac": "MacCtrl+Shift+G"
       },
       "description": "Performs audit for Garden components"
-    },
-    "remove-garden-audit": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+H",
-        "mac": "MacCtrl+Shift+H"
-      },
-      "description": "Remove audits from screen"
     }
   },
   "icons": {
