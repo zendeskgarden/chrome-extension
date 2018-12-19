@@ -99,9 +99,9 @@ function init() {
 
   if (existingAuditOverlays.length > 0) {
     removeAuditOverlays(existingAuditOverlays);
-  } else {
-    addAuditOverlays(document);
   }
+
+  addAuditOverlays(document);
 
   // TODO enable iframe usage
   // document.querySelectorAll("iframe").forEach(item => {
