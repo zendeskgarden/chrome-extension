@@ -10,7 +10,6 @@ It includes:
   - Includes tooltips with component IDs and their versions
 - In your console:
   - Table of Garden components found in your console
-  - Notification of whether Garden Chrome is found
 
 ### Installation Instructions
 
