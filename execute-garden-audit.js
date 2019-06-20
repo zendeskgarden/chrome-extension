@@ -1,112 +1,57 @@
-function init() {
-  const GARDEN_AUDIT_SELECTOR = "[data-garden-audit]";
-  const GARDEN_COMPONENT_SELECTOR = "[data-garden-id]";
+function addHighlight(component) {
+  const id = component.getAttribute("data-garden-id");
+  const excludeIds = [
+    "chrome.nav",
+    "chrome.nav_item",
+    "chrome.subnav",
+    "chrome.header",
+    "chrome.header_item"
+  ];
 
-  class GardenAudit {
-    constructor(componentId, version) {
-      this.componentId = componentId;
-      this.version = version;
+  if (excludeIds.indexOf(id) === -1) {
+    const color = id.indexOf("chrome") === -1 ? "#43B324" : "#337FBD";
+    const clientRects = component.getClientRects();
+
+    for (let i = 0; i < clientRects.length; i++) {
+      const clientRect = clientRects[i];
+      const spread =
+        clientRect.width > clientRect.height
+          ? clientRect.width
+          : clientRect.height;
+
+      component.style.boxShadow = `inset 0 0 0 ${spread}px ${color}75`;
     }
   }
-
-  function getAuditOverlays() {
-    return document.querySelectorAll(GARDEN_AUDIT_SELECTOR);
-  }
-
-  function removeAuditOverlays(overlays) {
-    overlays.forEach(auditItem => {
-      auditItem.parentNode.removeChild(auditItem);
-    });
-  }
-
-  function addAuditOverlays(doc) {
-    const audits = [];
-
-    doc.querySelectorAll(GARDEN_COMPONENT_SELECTOR).forEach(item => {
-      const componentId = item.getAttribute("data-garden-id");
-      const componentVersion = item.getAttribute("data-garden-version");
-      const clientRect = item.getClientRects()[0];
-      let isChromeComponent = false;
-
-      if (!clientRect) {
-        return;
-      }
-
-      // Skip overlay for specific Chrome components to allow other audits to be visible
-      if (componentId.indexOf("chrome") !== -1) {
-        if (
-          componentId !== "chrome.nav" &&
-          componentId !== "chrome.nav_item" &&
-          componentId !== "chrome.subnav" &&
-          componentId !== "chrome.header" &&
-          componentId !== "chrome.header_item"
-        ) {
-          return;
-        }
-
-        isChromeComponent = true;
-      }
-
-      audits.push(new GardenAudit(componentId, componentVersion));
-
-      const overlayElement = createOverlayElement({
-        componentId,
-        componentVersion,
-        clientRect,
-        isChromeComponent
-      });
-
-      document.body.appendChild(overlayElement);
-    });
-
-    logAudits(audits);
-  }
-
-  function logAudits(audits) {
-    if (audits.length > 0) {
-      console.table(audits);
-    }
-
-    console.log(
-      `A total of ${
-        audits.length
-      } Zendesk Garden components were found on the page.`
-    );
-  }
-
-  function createOverlayElement({
-    componentId,
-    componentVersion,
-    clientRect,
-    isChromeComponent
-  }) {
-    const element = document.createElement("div");
-    element.setAttribute("title", `${componentId} - ${componentVersion}`);
-    element.setAttribute("data-garden-audit", true);
-    element.style.position = "absolute";
-    element.style.left = `${clientRect.x}px`;
-    element.style.top = `${clientRect.y}px`;
-    element.style.width = `${clientRect.width}px`;
-    element.style.height = `${clientRect.height}px`;
-    element.style.backgroundColor = isChromeComponent ? "#337FBD" : "#67C34B";
-    element.style.opacity = 0.3;
-    element.style.zIndex = 10000;
-
-    return element;
-  }
-
-  const existingAuditOverlays = getAuditOverlays();
-
-  if (existingAuditOverlays.length > 0) {
-    removeAuditOverlays(existingAuditOverlays);
-  }
-
-  addAuditOverlays(document);
-
-  // TODO enable iframe usage
-  // document.querySelectorAll("iframe").forEach(item => {
-  //   addAuditOverlays(item.contentWindow.document);
-  // });
 }
 
-init();
+function addTitle(component) {
+  const id = component.getAttribute("data-garden-id");
+  const version = component.getAttribute("data-garden-version");
+
+  component.setAttribute("title", `${id} - ${version}`);
+}
+
+(function() {
+  const components = [];
+
+  document.querySelectorAll("[data-garden-id]").forEach(component => {
+    components.push({
+      id: component.getAttribute("data-garden-id"),
+      version: component.getAttribute("data-garden-version")
+    });
+    addHighlight(component);
+    addTitle(component);
+  });
+
+  /* TODO [jtz] query into iframe documents */
+
+  if (components.length > 0) {
+    console.table(components);
+  }
+
+  console.log(
+    `A total of ${
+      components.length
+    } Zendesk Garden components were found on the page.`
+  );
+})();
