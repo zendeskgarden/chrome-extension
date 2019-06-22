@@ -1,9 +1,32 @@
-function init() {
-  const GARDEN_AUDIT_SELECTOR = "[data-garden-audit]";
+(function() {
+  function removeHighlight(component) {
+    component.style.boxShadow = "";
+  }
 
-  document.querySelectorAll(GARDEN_AUDIT_SELECTOR).forEach(auditItem => {
-    auditItem.parentNode.removeChild(auditItem);
-  });
-}
+  function restoreTitle(component) {
+    const ATTRIBUTE_TITLE = "data-garden-title";
+    const title = component.getAttribute(ATTRIBUTE_TITLE);
 
-init();
+    if (title) {
+      component.setAttribute("title", title);
+      component.removeAttribute(ATTRIBUTE_TITLE);
+    } else {
+      component.removeAttribute("title");
+    }
+  }
+
+  const unaudit = doc => {
+    doc.querySelectorAll("[data-garden-id]").forEach(component => {
+      removeHighlight(component);
+      restoreTitle(component);
+    });
+  };
+
+  unaudit(document);
+
+  const iframes = document.getElementsByTagName("iframe");
+
+  for (let iframe of iframes) {
+    unaudit(iframe.contentDocument);
+  }
+})();
