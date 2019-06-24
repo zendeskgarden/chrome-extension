@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.1.0 - 2019-06-21
+## 0.1.0 - 2019-06-24
 
 - Overlay color by version
 - Add ability to audit into iframe documents
