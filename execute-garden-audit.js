@@ -1,112 +1,94 @@
-function init() {
-  const GARDEN_AUDIT_SELECTOR = "[data-garden-audit]";
-  const GARDEN_COMPONENT_SELECTOR = "[data-garden-id]";
+(function() {
+  const ATTRIBUTE_GARDEN_ID = "data-garden-id";
+  const ATTRIBUTE_GARDEN_VERSION = "data-garden-version";
+  const COLOR_AZURE = "#3091EC";
+  const COLOR_CRIMSON = "#C72A1C";
+  const COLOR_LEMON = "#FFD424";
+  const COLOR_LIME = "#43B324";
 
-  class GardenAudit {
-    constructor(componentId, version) {
-      this.componentId = componentId;
-      this.version = version;
-    }
-  }
+  function addHighlight(component) {
+    const id = component.getAttribute(ATTRIBUTE_GARDEN_ID);
+    const excludeIds = ["chrome.main", "grid.grid", "grid.col", "grid.row"];
 
-  function getAuditOverlays() {
-    return document.querySelectorAll(GARDEN_AUDIT_SELECTOR);
-  }
+    if (excludeIds.indexOf(id) === -1) {
+      let color;
 
-  function removeAuditOverlays(overlays) {
-    overlays.forEach(auditItem => {
-      auditItem.parentNode.removeChild(auditItem);
-    });
-  }
+      if (id.indexOf("chrome") !== -1) {
+        color = COLOR_AZURE;
+      } else {
+        const version = component.getAttribute(ATTRIBUTE_GARDEN_VERSION);
 
-  function addAuditOverlays(doc) {
-    const audits = [];
+        // TODO [jtz] replace with an implementation that fetches package data
+        // from registry.npmjs.com and calculates relative age based on
+        // `time.created` vs. `time.modified` and applies color accordingly.
+        if (version === "0.1.0") {
+          color = COLOR_CRIMSON;
+        } else {
+          const major = parseInt(version[0], 10);
 
-    doc.querySelectorAll(GARDEN_COMPONENT_SELECTOR).forEach(item => {
-      const componentId = item.getAttribute("data-garden-id");
-      const componentVersion = item.getAttribute("data-garden-version");
-      const clientRect = item.getClientRects()[0];
-      let isChromeComponent = false;
-
-      if (!clientRect) {
-        return;
-      }
-
-      // Skip overlay for specific Chrome components to allow other audits to be visible
-      if (componentId.indexOf("chrome") !== -1) {
-        if (
-          componentId !== "chrome.nav" &&
-          componentId !== "chrome.nav_item" &&
-          componentId !== "chrome.subnav" &&
-          componentId !== "chrome.header" &&
-          componentId !== "chrome.header_item"
-        ) {
-          return;
+          if (major >= 6) {
+            color = COLOR_LIME;
+          } else {
+            color = COLOR_LEMON;
+          }
         }
-
-        isChromeComponent = true;
       }
 
-      audits.push(new GardenAudit(componentId, componentVersion));
+      const clientRects = component.getClientRects();
 
-      const overlayElement = createOverlayElement({
-        componentId,
-        componentVersion,
-        clientRect,
-        isChromeComponent
-      });
+      for (let i = 0; i < clientRects.length; i++) {
+        const clientRect = clientRects[i];
+        const spread =
+          clientRect.width > clientRect.height
+            ? clientRect.width
+            : clientRect.height;
 
-      document.body.appendChild(overlayElement);
-    });
-
-    logAudits(audits);
+        component.style.boxShadow = `inset 0 0 0 ${spread}px ${color}50`;
+      }
+    }
   }
 
-  function logAudits(audits) {
-    if (audits.length > 0) {
-      console.table(audits);
+  function replaceTitle(component) {
+    const title = component.getAttribute("title");
+
+    if (title) {
+      // Save for restore on audit removal.
+      component.setAttribute("data-garden-title", title);
     }
 
-    console.log(
-      `A total of ${
-        audits.length
-      } Zendesk Garden components were found on the page.`
-    );
+    const id = component.getAttribute(ATTRIBUTE_GARDEN_ID);
+    const version = component.getAttribute(ATTRIBUTE_GARDEN_VERSION);
+
+    component.setAttribute("title", `${id} - ${version}`);
   }
 
-  function createOverlayElement({
-    componentId,
-    componentVersion,
-    clientRect,
-    isChromeComponent
-  }) {
-    const element = document.createElement("div");
-    element.setAttribute("title", `${componentId} - ${componentVersion}`);
-    element.setAttribute("data-garden-audit", true);
-    element.style.position = "absolute";
-    element.style.left = `${clientRect.x}px`;
-    element.style.top = `${clientRect.y}px`;
-    element.style.width = `${clientRect.width}px`;
-    element.style.height = `${clientRect.height}px`;
-    element.style.backgroundColor = isChromeComponent ? "#337FBD" : "#67C34B";
-    element.style.opacity = 0.3;
-    element.style.zIndex = 10000;
+  const components = [];
+  const audit = doc => {
+    doc.querySelectorAll(`[${ATTRIBUTE_GARDEN_ID}]`).forEach(component => {
+      components.push({
+        id: component.getAttribute(ATTRIBUTE_GARDEN_ID),
+        version: component.getAttribute(ATTRIBUTE_GARDEN_VERSION)
+      });
+      addHighlight(component);
+      replaceTitle(component);
+    });
+  };
 
-    return element;
+  audit(document);
+
+  const iframes = document.getElementsByTagName("iframe");
+
+  for (let iframe of iframes) {
+    audit(iframe.contentDocument);
   }
 
-  const existingAuditOverlays = getAuditOverlays();
-
-  if (existingAuditOverlays.length > 0) {
-    removeAuditOverlays(existingAuditOverlays);
+  if (components.length > 0) {
+    console.table(components);
   }
 
-  addAuditOverlays(document);
-
-  // TODO enable iframe usage
-  // document.querySelectorAll("iframe").forEach(item => {
-  //   addAuditOverlays(item.contentWindow.document);
-  // });
-}
-
-init();
+  console.log(
+    `A total of ${
+      components.length
+    } Zendesk Garden components were found on the page.`
+  );
+})();
