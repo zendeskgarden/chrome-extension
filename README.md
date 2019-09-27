@@ -17,6 +17,7 @@ It includes:
 To install locally:
 
 1. Navigate to [chrome://extensions/](chrome://extensions/)
+1. Enable `Developer Mode` toggle
 1. Choose the `Load Unpacked` option
 1. Select this folder to install the extension locally
 
