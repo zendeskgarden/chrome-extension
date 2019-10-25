@@ -23,7 +23,7 @@
 
         if (major >= CURRENT_MAJOR) {
           color = COLOR_LIME; // up-to-date
-        } else if (major >= CURRENT_MAJOR - 1) {
+        } else if (major === CURRENT_MAJOR - 1) {
           color = COLOR_LEMON; // one version back
         } else {
           color = COLOR_CRIMSON; // out-of-date
