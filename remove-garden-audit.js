@@ -1,6 +1,7 @@
 (function() {
   function removeHighlight(component) {
     component.style.boxShadow = "";
+    component.style.outline = "";
   }
 
   function restoreTitle(component) {
@@ -16,10 +17,12 @@
   }
 
   const unaudit = doc => {
-    doc.querySelectorAll("[data-garden-id]").forEach(component => {
-      removeHighlight(component);
-      restoreTitle(component);
-    });
+    doc
+      .querySelectorAll("[data-garden-id], [data-garden-container-id]")
+      .forEach(component => {
+        removeHighlight(component);
+        restoreTitle(component);
+      });
   };
 
   unaudit(document);

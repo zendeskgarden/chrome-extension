@@ -1,13 +1,16 @@
 (function() {
   const ATTRIBUTE_GARDEN_ID = "data-garden-id";
   const ATTRIBUTE_GARDEN_VERSION = "data-garden-version";
+  const ATTRIBUTE_GARDEN_CONTAINER_ID = "data-garden-container-id";
+  const ATTRIBUTE_GARDEN_CONTAINER_VERSION = "data-garden-container-version";
   const COLOR_AZURE = "#3091EC";
   const COLOR_CRIMSON = "#C72A1C";
   const COLOR_LEMON = "#FFD424";
   const COLOR_LIME = "#43B324";
+  const COLOR_PURPLE = "#B552E2";
+  const CURRENT_MAJOR = 7;
 
-  function addHighlight(component) {
-    const id = component.getAttribute(ATTRIBUTE_GARDEN_ID);
+  function addHighlight(component, id, version) {
     const excludeIds = ["chrome.main", "grid.grid", "grid.col", "grid.row"];
 
     if (excludeIds.indexOf(id) === -1) {
@@ -16,21 +19,14 @@
       if (id.indexOf("chrome") !== -1) {
         color = COLOR_AZURE;
       } else {
-        const version = component.getAttribute(ATTRIBUTE_GARDEN_VERSION);
+        const major = parseInt(version[0], 10);
 
-        // TODO [jtz] replace with an implementation that fetches package data
-        // from registry.npmjs.com and calculates relative age based on
-        // `time.created` vs. `time.modified` and applies color accordingly.
-        if (version === "0.1.0") {
-          color = COLOR_CRIMSON;
+        if (major >= CURRENT_MAJOR) {
+          color = COLOR_LIME; // up-to-date
+        } else if (major >= CURRENT_MAJOR - 1) {
+          color = COLOR_LEMON; // one version back
         } else {
-          const major = parseInt(version[0], 10);
-
-          if (major >= 6) {
-            color = COLOR_LIME;
-          } else {
-            color = COLOR_LEMON;
-          }
+          color = COLOR_CRIMSON; // out-of-date
         }
       }
 
@@ -48,7 +44,7 @@
     }
   }
 
-  function replaceTitle(component) {
+  function replaceTitle(component, id, version) {
     const title = component.getAttribute("title");
 
     if (title) {
@@ -56,21 +52,38 @@
       component.setAttribute("data-garden-title", title);
     }
 
-    const id = component.getAttribute(ATTRIBUTE_GARDEN_ID);
-    const version = component.getAttribute(ATTRIBUTE_GARDEN_VERSION);
-
     component.setAttribute("title", `${id} - ${version}`);
   }
 
   const components = [];
+
   const audit = doc => {
-    doc.querySelectorAll(`[${ATTRIBUTE_GARDEN_ID}]`).forEach(component => {
-      components.push({
-        id: component.getAttribute(ATTRIBUTE_GARDEN_ID),
-        version: component.getAttribute(ATTRIBUTE_GARDEN_VERSION)
-      });
-      addHighlight(component);
-      replaceTitle(component);
+    const elements = doc.querySelectorAll(`[${ATTRIBUTE_GARDEN_ID}]`);
+    const containers = doc.querySelectorAll(
+      `[${ATTRIBUTE_GARDEN_CONTAINER_ID}]:not([${ATTRIBUTE_GARDEN_ID}])`
+    );
+
+    elements.forEach(element => {
+      const id = element.getAttribute(ATTRIBUTE_GARDEN_ID);
+      const version = element.getAttribute(ATTRIBUTE_GARDEN_VERSION);
+
+      components.push({ id, version });
+      addHighlight(element, id, version);
+      replaceTitle(element, id, version);
+    });
+
+    containers.forEach(container => {
+      const id = `container.${container.getAttribute(
+        ATTRIBUTE_GARDEN_CONTAINER_ID
+      )}`;
+      const version = container.getAttribute(
+        ATTRIBUTE_GARDEN_CONTAINER_VERSION
+      );
+
+      components.push({ id, version });
+      container.style.outline = `2px dashed ${COLOR_PURPLE}`;
+      container.style.outlineOffset = "-2px";
+      replaceTitle(container, id, version);
     });
   };
 
@@ -87,8 +100,6 @@
   }
 
   console.log(
-    `A total of ${
-      components.length
-    } Zendesk Garden components were found on the page.`
+    `A total of ${components.length} Zendesk Garden components were found on the page.`
   );
 })();
