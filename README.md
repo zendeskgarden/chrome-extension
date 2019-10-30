@@ -8,7 +8,7 @@ It includes:
 
 - Visual audit with overlays
   - Includes tooltips with component IDs and their versions
-  - Green = up-to-date; yellow = time to update; red = severely out-of-date
+  - Green = up-to-date; yellow = time to update; red = out-of-date
 - In your console:
   - Table of Garden components found in your console
 
