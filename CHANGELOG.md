@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.1 - 2019-11-04
+
+- Remove `container` logging prefix (the `data-garden-container-id` contains
+  the prefix)
+
 ## 0.2.0 - 2019-10-25
 
 - Update current major version = 7
