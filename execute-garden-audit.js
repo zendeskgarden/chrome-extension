@@ -73,9 +73,7 @@
     });
 
     containers.forEach(container => {
-      const id = `container.${container.getAttribute(
-        ATTRIBUTE_GARDEN_CONTAINER_ID
-      )}`;
+      const id = `${container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID)}`;
       const version = container.getAttribute(
         ATTRIBUTE_GARDEN_CONTAINER_VERSION
       );
