@@ -1,22 +1,22 @@
 (function() {
-  const ATTRIBUTE_GARDEN_ID = "data-garden-id";
-  const ATTRIBUTE_GARDEN_VERSION = "data-garden-version";
-  const ATTRIBUTE_GARDEN_CONTAINER_ID = "data-garden-container-id";
-  const ATTRIBUTE_GARDEN_CONTAINER_VERSION = "data-garden-container-version";
-  const COLOR_AZURE = "#3091EC";
-  const COLOR_CRIMSON = "#C72A1C";
-  const COLOR_LEMON = "#FFD424";
-  const COLOR_LIME = "#43B324";
-  const COLOR_PURPLE = "#B552E2";
+  const ATTRIBUTE_GARDEN_ID = 'data-garden-id';
+  const ATTRIBUTE_GARDEN_VERSION = 'data-garden-version';
+  const ATTRIBUTE_GARDEN_CONTAINER_ID = 'data-garden-container-id';
+  const ATTRIBUTE_GARDEN_CONTAINER_VERSION = 'data-garden-container-version';
+  const COLOR_AZURE = '#3091EC';
+  const COLOR_CRIMSON = '#C72A1C';
+  const COLOR_LEMON = '#FFD424';
+  const COLOR_LIME = '#43B324';
+  const COLOR_PURPLE = '#B552E2';
   const CURRENT_MAJOR = 7;
 
   function addHighlight(component, id, version) {
-    const excludeIds = ["chrome.main", "grid.grid", "grid.col", "grid.row"];
+    const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row'];
 
     if (excludeIds.indexOf(id) === -1) {
       let color;
 
-      if (id.indexOf("chrome") !== -1) {
+      if (id.indexOf('chrome') !== -1) {
         color = COLOR_AZURE;
       } else {
         const major = parseInt(version[0], 10);
@@ -45,14 +45,14 @@
   }
 
   function replaceTitle(component, id, version) {
-    const title = component.getAttribute("title");
+    const title = component.getAttribute('title');
 
     if (title) {
       // Save for restore on audit removal.
-      component.setAttribute("data-garden-title", title);
+      component.setAttribute('data-garden-title', title);
     }
 
-    component.setAttribute("title", `${id} - ${version}`);
+    component.setAttribute('title', `${id} - ${version}`);
   }
 
   const components = [];
@@ -80,17 +80,24 @@
 
       components.push({ id, version });
       container.style.outline = `2px dashed ${COLOR_PURPLE}`;
-      container.style.outlineOffset = "-2px";
+      container.style.outlineOffset = '-2px';
       replaceTitle(container, id, version);
     });
   };
 
   audit(document);
 
-  const iframes = document.getElementsByTagName("iframe");
+  const iframes = document.getElementsByTagName('iframe');
 
   for (let iframe of iframes) {
-    audit(iframe.contentDocument);
+    if (iframe.contentDocument) {
+      audit(iframe.contentDocument);
+    } else {
+      console.log(
+        'Garden Audit is unable to access cross-origin iframe:',
+        iframe
+      );
+    }
   }
 
   if (components.length > 0) {
