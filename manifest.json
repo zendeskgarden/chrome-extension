@@ -1,7 +1,7 @@
 {
   "name": "Garden Audit",
   "description": "Visually audit web pages for Zendesk Garden design system usage.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "permissions": ["activeTab", "commands"],
   "background": {
     "scripts": ["background.js"],

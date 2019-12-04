@@ -5,7 +5,7 @@ chrome.browserAction.onClicked.addListener(tab => {
 });
 
 chrome.commands.onCommand.addListener(function(command) {
-  if (command === "execute-garden-audit") {
+  if (command === 'execute-garden-audit') {
     chrome.tabs.query(
       {
         active: true,
@@ -25,21 +25,21 @@ function executeScript(tabId) {
 
   if (toggle) {
     chrome.browserAction.setIcon({
-      path: "images/on.png",
+      path: 'images/on.png',
       tabId: tabId
     });
 
     chrome.tabs.executeScript({
-      file: "execute-garden-audit.js"
+      file: 'execute-garden-audit.js'
     });
   } else {
     chrome.browserAction.setIcon({
-      path: "images/off.png",
+      path: 'images/off.png',
       tabId: tabId
     });
 
     chrome.tabs.executeScript({
-      file: "remove-garden-audit.js"
+      file: 'remove-garden-audit.js'
     });
   }
 }

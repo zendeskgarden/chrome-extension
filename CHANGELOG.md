@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.2 - 2019-11-29
+
+- Prevent invalid iframe document references
+- Log cross-origin iframes that cannot be accessed
+
 ## 0.2.1 - 2019-11-04
 
 - Remove `container` logging prefix (the `data-garden-container-id` contains
