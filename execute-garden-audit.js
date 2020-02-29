@@ -8,7 +8,7 @@
   const COLOR_LEMON = '#FFD424';
   const COLOR_LIME = '#43B324';
   const COLOR_PURPLE = '#B552E2';
-  const CURRENT_MAJOR = 7;
+  const CURRENT_MAJOR = 8;
 
   function addHighlight(component, id, version) {
     const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row'];
