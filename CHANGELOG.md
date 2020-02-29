@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.0 - 2019-02-28
+
+- Update current major version = 8
+
 ## 0.2.2 - 2019-11-29
 
 - Prevent invalid iframe document references
