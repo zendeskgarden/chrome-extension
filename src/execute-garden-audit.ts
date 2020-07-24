@@ -1,4 +1,11 @@
-(function() {
+/**
+ * Copyright Zendesk, Inc.
+ *
+ * Use of this source code is governed under the Apache License, Version 2.0
+ * found at http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+(function () {
   const ATTRIBUTE_GARDEN_ID = 'data-garden-id';
   const ATTRIBUTE_GARDEN_VERSION = 'data-garden-version';
   const ATTRIBUTE_GARDEN_CONTAINER_ID = 'data-garden-container-id';
@@ -34,10 +41,7 @@
 
       for (let i = 0; i < clientRects.length; i++) {
         const clientRect = clientRects[i];
-        const spread =
-          clientRect.width > clientRect.height
-            ? clientRect.width
-            : clientRect.height;
+        const spread = clientRect.width > clientRect.height ? clientRect.width : clientRect.height;
 
         component.style.boxShadow = `inset 0 0 0 ${spread}px ${color}50`;
       }
@@ -74,9 +78,7 @@
 
     containers.forEach(container => {
       const id = `${container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID)}`;
-      const version = container.getAttribute(
-        ATTRIBUTE_GARDEN_CONTAINER_VERSION
-      );
+      const version = container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_VERSION);
 
       components.push({ id, version });
       container.style.outline = `2px dashed ${COLOR_PURPLE}`;
@@ -93,10 +95,7 @@
     if (iframe.contentDocument) {
       audit(iframe.contentDocument);
     } else {
-      console.log(
-        'Garden Audit is unable to access cross-origin iframe:',
-        iframe
-      );
+      console.log('Garden Audit is unable to access cross-origin iframe:', iframe);
     }
   }
 
@@ -104,7 +103,5 @@
     console.table(components);
   }
 
-  console.log(
-    `A total of ${components.length} Zendesk Garden components were found on the page.`
-  );
+  console.log(`A total of ${components.length} Zendesk Garden components were found on the page.`);
 })();

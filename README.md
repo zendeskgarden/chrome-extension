@@ -2,7 +2,7 @@
 
 This browser extension allows users to easily audit which Garden components are visible on a page.
 
-![Garden Audit Example](./images/example.gif)
+![Garden Audit Example](./.github/image.gif)
 
 It includes:
 

@@ -1,4 +1,11 @@
-(function() {
+/**
+ * Copyright Zendesk, Inc.
+ *
+ * Use of this source code is governed under the Apache License, Version 2.0
+ * found at http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+(function () {
   function removeHighlight(component) {
     component.style.boxShadow = '';
     component.style.outline = '';
@@ -17,12 +24,10 @@
   }
 
   const unaudit = doc => {
-    doc
-      .querySelectorAll('[data-garden-id], [data-garden-container-id]')
-      .forEach(component => {
-        removeHighlight(component);
-        restoreTitle(component);
-      });
+    doc.querySelectorAll('[data-garden-id], [data-garden-container-id]').forEach(component => {
+      removeHighlight(component);
+      restoreTitle(component);
+    });
   };
 
   unaudit(document);
