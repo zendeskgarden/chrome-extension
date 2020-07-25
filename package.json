@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "mkdir -p dist && cp -r src/manifest.json src/images dist",
     "build": "tsc",
-    "format": "prettier-package-json --write && yarn format:all --write",
+    "format": "prettier-package-json --write && prettier-package-json --write src/manifest.json && yarn format:all --write",
     "format:all": "prettier --loglevel warn '**/*.{js,ts,json,md}' '!CHANGELOG.md' '!dist/**'",
     "lint": "yarn lint:js && yarn lint:md",
     "lint:js": "eslint src/ --ext js,ts --max-warnings 0",
