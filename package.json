@@ -3,7 +3,7 @@
   "name": "@zendeskgarden/chrome-extension",
   "version": "0.0.0",
   "scripts": {
-    "prebuild": "cp -r src/manifest.json src/images dist",
+    "prebuild": "mkdir -p dist && cp -r src/manifest.json src/images dist",
     "build": "tsc",
     "format": "prettier-package-json --write && yarn format:all --write",
     "format:all": "prettier --loglevel warn '**/*.{js,ts,json,md}' '!CHANGELOG.md' '!dist/**'",

@@ -6,7 +6,6 @@
     "outDir": "dist",
     "strict": true,
     "declaration": false,
-    "esModuleInterop": true,
-    "typeRoots": ["./typings", "./node_modules/@types"]
+    "esModuleInterop": true
   }
 }
