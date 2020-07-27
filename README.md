@@ -19,9 +19,9 @@ to your browser.
 
 ## Usage
 
-The graphic below illustrates browser extension usage. Simply click the
-extension icon – or press `Ctrl`+`Shift`+`G` – to toggle Garden Inspect.
-Features include:
+The graphic below illustrates browser extension usage. Click the extension
+icon – or press `Ctrl`+`Shift`+`G` – to toggle Garden Inspect. Features
+include:
 
 - Color highlighting indicating Garden
   [component](https://github.com/zendeskgarden/react-components) freshness
