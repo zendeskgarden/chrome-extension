@@ -27,11 +27,15 @@ on your system. After you clone this repo, run `yarn` to install
 dependencies needed for development. After installation, the following
 commands are available:
 
+- `yarn start` to run the browser extension.
 - `yarn test` to run package tests.
 - `yarn lint` to enforce consistent code conventions. Note this is run
   as a git `pre-commit` hook.
 - `yarn format` to enforce code style with opinionated formats. Note
   this is run as a git `pre-commit` hook.
+- `yarn build` to compile source TS to distribution JS. The build runs
+  as part of the initial install.
+- `yarn watch` to watch source files for changes and rebuild as needed.
 
 ## Pull Request Workflow
 
