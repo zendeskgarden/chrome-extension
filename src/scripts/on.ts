@@ -5,6 +5,8 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+declare const GARDEN_VERSION: string;
+
 (() => {
   const ATTRIBUTE_GARDEN_ID = 'data-garden-id';
   const ATTRIBUTE_GARDEN_VERSION = 'data-garden-version';
@@ -24,7 +26,7 @@
 
       if (id.indexOf('chrome') === -1) {
         const major = parseInt(version.split('.')[0], 10);
-        const currentMajor = parseInt(window.GARDEN_VERSION.split('.')[0], 10);
+        const currentMajor = parseInt(GARDEN_VERSION.split('.')[0], 10);
 
         if (major >= currentMajor) {
           color = COLOR_CURRENT; // up-to-date
@@ -106,5 +108,5 @@
   }
 
   console.log(`A total of ${components.length} Zendesk Garden components were found on the page.`);
-  console.log(`The latest version of Zendesk Garden components is ${window.GARDEN_VERSION}.`);
+  console.log(`The latest version of Zendesk Garden components is ${GARDEN_VERSION}.`);
 })();
