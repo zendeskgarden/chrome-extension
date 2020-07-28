@@ -8,11 +8,25 @@
 const gardenInspect = (tabId?: number, toggle?: boolean) => {
   const key = `garden-inspect-${tabId}`;
 
+  const version = async () => {
+    try {
+      const response = await fetch('https://registry.npmjs.org/@zendeskgarden/react-theming');
+      const json = await response.json();
+
+      return json['dist-tags'].latest;
+    } catch {
+      return '0.0.0';
+    }
+  };
+
   const execute = (on: boolean) => {
     chrome.storage.local.set({ [key]: on }, () => {
       if (on) {
-        chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
-        chrome.tabs.executeScript({ file: 'scripts/on.js' });
+        version().then(value => {
+          chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
+          chrome.tabs.executeScript({ code: `window.GARDEN_VERSION = '${value}';` });
+          chrome.tabs.executeScript({ file: 'scripts/on.js' });
+        });
       } else {
         chrome.browserAction.setIcon({ path: 'images/off.png', tabId });
         chrome.tabs.executeScript({ file: 'scripts/off.js' });

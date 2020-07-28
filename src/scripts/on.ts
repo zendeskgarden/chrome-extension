@@ -15,7 +15,6 @@
   const COLOR_CURRENT = '#43B324'; /* lime */
   const COLOR_PAST = '#C72A1C'; /* crimson */
   const COLOR_PREVIOUS = '#FFD424'; /* lemon */
-  const CURRENT_MAJOR = 8;
 
   const addHighlight = (component: HTMLElement, id: string, version: string) => {
     const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row'];
@@ -24,11 +23,12 @@
       let color;
 
       if (id.indexOf('chrome') === -1) {
-        const major = parseInt(version[0], 10);
+        const major = parseInt(version.split('.')[0], 10);
+        const currentMajor = parseInt(window.GARDEN_VERSION.split('.')[0], 10);
 
-        if (major >= CURRENT_MAJOR) {
+        if (major >= currentMajor) {
           color = COLOR_CURRENT; // up-to-date
-        } else if (major === CURRENT_MAJOR - 1) {
+        } else if (major === currentMajor - 1) {
           color = COLOR_PREVIOUS; // one version back
         } else {
           color = COLOR_PAST; // out-of-date
@@ -106,4 +106,5 @@
   }
 
   console.log(`A total of ${components.length} Zendesk Garden components were found on the page.`);
+  console.log(`The latest version of Zendesk Garden components is ${window.GARDEN_VERSION}.`);
 })();
