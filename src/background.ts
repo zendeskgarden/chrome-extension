@@ -6,11 +6,11 @@
  */
 
 const gardenInspect = (tabId?: number, toggle?: boolean) => {
-  const key = 'garden-inspect';
+  const key = `garden-inspect-${tabId}`;
 
-  const execute = (items: { [key: string]: boolean }) => {
-    chrome.storage.local.set(items, () => {
-      if (items[key]) {
+  const execute = (on: boolean) => {
+    chrome.storage.local.set({ [key]: on }, () => {
+      if (on) {
         chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
         chrome.tabs.executeScript({ file: 'scripts/on.js' });
       } else {
@@ -21,12 +21,13 @@ const gardenInspect = (tabId?: number, toggle?: boolean) => {
   };
 
   if (toggle === undefined) {
-    chrome.storage.local.get(key, result => {
-      result[key] = result[key] === undefined ? true : !result[key];
-      execute(result);
+    chrome.storage.local.get(result => {
+      const on = result[key] === undefined ? true : !result[key];
+
+      execute(on);
     });
   } else {
-    execute({ [key]: toggle });
+    execute(toggle);
   }
 };
 
