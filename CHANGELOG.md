@@ -1,25 +1,25 @@
-# Change Log
+# Changelog
 
-## 0.3.0 - 2019-02-28
+### 0.3.0 - 2019-02-28
 
 - Update current major version = 8
 
-## 0.2.2 - 2019-11-29
+### 0.2.2 - 2019-11-29
 
 - Prevent invalid iframe document references
 - Log cross-origin iframes that cannot be accessed
 
-## 0.2.1 - 2019-11-04
+### 0.2.1 - 2019-11-04
 
 - Remove `container` logging prefix (the `data-garden-container-id` contains
   the prefix)
 
-## 0.2.0 - 2019-10-25
+### 0.2.0 - 2019-10-25
 
 - Update current major version = 7
 - Add outline treatment for container components
 
-## 0.1.0 - 2019-06-24
+### 0.1.0 - 2019-06-24
 
 - Overlay color by version
 - Add ability to audit into iframe documents
