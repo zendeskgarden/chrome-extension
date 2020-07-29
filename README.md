@@ -5,7 +5,7 @@
 [build status badge]: https://flat.badgen.net/circleci/github/zendeskgarden/chrome-extension/main?label=build
 [build status link]: https://circleci.com/gh/zendeskgarden/chrome-extension/tree/main
 [chrome web store badge]: https://flat.badgen.net//chrome-web-store/v/gegnmdnjkodmkohdbljgjpaifiphnjig
-[chrome web store link]: https://chrome.google.com/webstore/detail/gegnmdnjkodmkohdbljgjpaifiphnjig
+[chrome web store link]: https://chrome.google.com/webstore/detail/zendesk-garden-inspect/gegnmdnjkodmkohdbljgjpaifiphnjig
 
 > :seedling: Garden is a design system for Zendesk
 
@@ -14,7 +14,7 @@ This repo contains the source code for the Garden Inspect browser extension.
 ## Installation
 
 Add the [Chrome
-extension](https://chrome.google.com/webstore/detail/gegnmdnjkodmkohdbljgjpaifiphnjig)
+extension](https://chrome.google.com/webstore/detail/zendesk-garden-inspect/gegnmdnjkodmkohdbljgjpaifiphnjig)
 to your browser.
 
 ## Usage
