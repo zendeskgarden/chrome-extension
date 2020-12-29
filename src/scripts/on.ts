@@ -7,7 +7,7 @@
 
 declare const GARDEN_VERSION: string;
 
-(() => {
+((): void => {
   const ATTRIBUTE_GARDEN_ID = 'data-garden-id';
   const ATTRIBUTE_GARDEN_VERSION = 'data-garden-version';
   const ATTRIBUTE_GARDEN_CONTAINER_ID = 'data-garden-container-id';
@@ -18,13 +18,15 @@ declare const GARDEN_VERSION: string;
   const COLOR_PAST = '#C72A1C'; /* crimson */
   const COLOR_PREVIOUS = '#FFD424'; /* lemon */
 
-  const addHighlight = (component: HTMLElement, id: string, version: string) => {
+  const addHighlight = (component: HTMLElement, id: string, version: string): void => {
     const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row'];
 
-    if (excludeIds.indexOf(id) === -1) {
+    if (!excludeIds.includes(id)) {
       let color;
 
-      if (id.indexOf('chrome') === -1) {
+      if (id.includes('chrome')) {
+        color = COLOR_CHROME;
+      } else {
         const major = parseInt(version.split('.')[0], 10);
         const currentMajor = parseInt(GARDEN_VERSION.split('.')[0], 10);
 
@@ -35,8 +37,6 @@ declare const GARDEN_VERSION: string;
         } else {
           color = COLOR_PAST; // out-of-date
         }
-      } else {
-        color = COLOR_CHROME;
       }
 
       const clientRects = component.getClientRects();
@@ -49,11 +49,11 @@ declare const GARDEN_VERSION: string;
     }
   };
 
-  const replaceTitle = (component: Element, id: string, version: string) => {
+  const replaceTitle = (component: Element, id: string, version: string): void => {
     const ATTRIBUTE_GARDEN_TITLE = 'data-garden-title';
     const title = component.getAttribute('title');
 
-    if (title) {
+    if (title !== null) {
       // Save for restore on inspect removal.
       component.setAttribute(ATTRIBUTE_GARDEN_TITLE, title);
     }
@@ -61,30 +61,34 @@ declare const GARDEN_VERSION: string;
     component.setAttribute('title', `${id} - ${version}`);
   };
 
-  const inspect = (doc: Document, data: { id: string; version: string }[]) => {
+  const inspect = (doc: Document, data: { id: string; version: string }[]): void => {
     const componentSelector = `[${ATTRIBUTE_GARDEN_ID}]`;
     const components = (doc.querySelectorAll(componentSelector) as unknown) as HTMLElement[];
 
     components.forEach(element => {
-      const id = `${element.getAttribute(ATTRIBUTE_GARDEN_ID)}`;
-      const version = `${element.getAttribute(ATTRIBUTE_GARDEN_VERSION)}`;
+      const id = element.getAttribute(ATTRIBUTE_GARDEN_ID);
+      const version = element.getAttribute(ATTRIBUTE_GARDEN_VERSION);
 
-      data.push({ id, version });
-      addHighlight(element, id, version);
-      replaceTitle(element, id, version);
+      if (id !== null && version !== null) {
+        data.push({ id, version });
+        addHighlight(element, id, version);
+        replaceTitle(element, id, version);
+      }
     });
 
     const containerSelector = `[${ATTRIBUTE_GARDEN_CONTAINER_ID}]:not([${ATTRIBUTE_GARDEN_ID}])`;
     const containers = (doc.querySelectorAll(containerSelector) as unknown) as HTMLElement[];
 
     containers.forEach(container => {
-      const id = `${container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID)}`;
-      const version = `${container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_VERSION)}`;
+      const id = container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID);
+      const version = container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_VERSION);
 
-      data.push({ id, version });
-      container.style.outline = `2px dashed ${COLOR_CONTAINER}`;
-      container.style.outlineOffset = '-2px';
-      replaceTitle(container, id, version);
+      if (id !== null && version !== null) {
+        data.push({ id, version });
+        container.style.outline = `2px dashed ${COLOR_CONTAINER}`;
+        container.style.outlineOffset = '-2px';
+        replaceTitle(container, id, version);
+      }
     });
   };
 

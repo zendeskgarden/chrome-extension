@@ -1,18 +1,18 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
   "extends": [
     "@zendeskgarden",
     "@zendeskgarden/eslint-config/plugins/notice",
     "@zendeskgarden/eslint-config/plugins/typescript",
+    "@zendeskgarden/eslint-config/plugins/typescript-semantics",
     "prettier",
     "prettier/@typescript-eslint"
   ],
   "rules": {
     "no-console": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-var-requires": "off",
     "node/no-unsupported-features/node-builtins": ["error", { "version": ">=10.0.0" }]
   }
 }

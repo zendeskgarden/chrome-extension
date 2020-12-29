@@ -5,28 +5,28 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-(() => {
+((): void => {
   const ATTRIBUTE_GARDEN_ID = 'data-garden-id';
   const ATTRIBUTE_GARDEN_CONTAINER_ID = 'data-garden-container-id';
   const ATTRIBUTE_GARDEN_TITLE = 'data-garden-title';
 
-  const removeHighlight = (component: HTMLElement) => {
+  const removeHighlight = (component: HTMLElement): void => {
     component.style.boxShadow = '';
     component.style.outline = '';
   };
 
-  const restoreTitle = (component: Element) => {
+  const restoreTitle = (component: Element): void => {
     const title = component.getAttribute(ATTRIBUTE_GARDEN_TITLE);
 
-    if (title) {
+    if (title === null) {
+      component.removeAttribute('title');
+    } else {
       component.setAttribute('title', title);
       component.removeAttribute(ATTRIBUTE_GARDEN_TITLE);
-    } else {
-      component.removeAttribute('title');
     }
   };
 
-  const uninspect = (doc: Document) => {
+  const uninspect = (doc: Document): void => {
     const selector = `[${ATTRIBUTE_GARDEN_ID}], [${ATTRIBUTE_GARDEN_CONTAINER_ID}]`;
     const components = (doc.querySelectorAll(selector) as unknown) as HTMLElement[];
 
