@@ -41,8 +41,7 @@ declare const GARDEN_VERSION: string;
 
       const clientRects = component.getClientRects();
 
-      for (let i = 0; i < clientRects.length; i++) {
-        const clientRect = clientRects[i];
+      for (const clientRect of clientRects) {
         const spread = clientRect.width > clientRect.height ? clientRect.width : clientRect.height;
 
         component.style.boxShadow = `inset 0 0 0 ${spread}px ${color}50`;
@@ -62,9 +61,9 @@ declare const GARDEN_VERSION: string;
     component.setAttribute('title', `${id} - ${version}`);
   };
 
-  const inspect = (doc: Document, data: Array<{ id: string; version: string }>) => {
+  const inspect = (doc: Document, data: { id: string; version: string }[]) => {
     const componentSelector = `[${ATTRIBUTE_GARDEN_ID}]`;
-    const components = <HTMLElement[]>(<unknown>doc.querySelectorAll(componentSelector));
+    const components = (doc.querySelectorAll(componentSelector) as unknown) as HTMLElement[];
 
     components.forEach(element => {
       const id = `${element.getAttribute(ATTRIBUTE_GARDEN_ID)}`;
@@ -76,7 +75,7 @@ declare const GARDEN_VERSION: string;
     });
 
     const containerSelector = `[${ATTRIBUTE_GARDEN_CONTAINER_ID}]:not([${ATTRIBUTE_GARDEN_ID}])`;
-    const containers = <HTMLElement[]>(<unknown>doc.querySelectorAll(containerSelector));
+    const containers = (doc.querySelectorAll(containerSelector) as unknown) as HTMLElement[];
 
     containers.forEach(container => {
       const id = `${container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID)}`;
@@ -89,7 +88,7 @@ declare const GARDEN_VERSION: string;
     });
   };
 
-  const components: Array<{ id: string; version: string }> = [];
+  const components: { id: string; version: string }[] = [];
 
   inspect(document, components);
 
