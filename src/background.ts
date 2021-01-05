@@ -5,13 +5,13 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-const gardenInspect = (tabId?: number, toggle?: boolean) => {
-  const key = `garden-inspect-${tabId}`;
+const gardenInspect = (tabId?: number, toggle?: boolean): void => {
+  const key = tabId === undefined ? 'garden-inspect' : `garden-inspect-${tabId}`;
 
-  const version = async () => {
+  const version = async (): Promise<string> => {
     try {
       const response = await fetch('https://registry.npmjs.org/@zendeskgarden/react-theming');
-      const json = await response.json();
+      const json = (await response.json()) as { 'dist-tags': { latest: string } };
 
       return json['dist-tags'].latest;
     } catch {
@@ -19,14 +19,19 @@ const gardenInspect = (tabId?: number, toggle?: boolean) => {
     }
   };
 
-  const execute = (on: boolean) => {
+  const execute = (on: boolean): void => {
     chrome.storage.local.set({ [key]: on }, () => {
       if (on) {
-        version().then(value => {
-          chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
-          chrome.tabs.executeScript({ code: `window.GARDEN_VERSION = '${value}';` });
-          chrome.tabs.executeScript({ file: 'scripts/on.js' });
-        });
+        version().then(
+          value => {
+            chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
+            chrome.tabs.executeScript({ code: `window.GARDEN_VERSION = '${value}';` });
+            chrome.tabs.executeScript({ file: 'scripts/on.js' });
+          },
+          () => {
+            chrome.storage.local.set({ [key]: false });
+          }
+        );
       } else {
         chrome.browserAction.setIcon({ path: 'images/off.png', tabId });
         chrome.tabs.executeScript({ file: 'scripts/off.js' });
@@ -36,7 +41,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean) => {
 
   if (toggle === undefined) {
     chrome.storage.local.get(result => {
-      const on = result[key] === undefined ? true : !result[key];
+      const on = result[key] === undefined ? true : !(result[key] as boolean);
 
       execute(on);
     });
@@ -58,7 +63,7 @@ chrome.commands.onCommand.addListener(command => {
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changes) => {
-  if (changes.url) {
+  if (changes.url !== undefined) {
     gardenInspect(tabId, false /* toggle */);
   }
 });

@@ -7,7 +7,7 @@
 [chrome web store badge]: https://flat.badgen.net//chrome-web-store/v/gegnmdnjkodmkohdbljgjpaifiphnjig
 [chrome web store link]: https://chrome.google.com/webstore/detail/zendesk-garden-inspect/gegnmdnjkodmkohdbljgjpaifiphnjig
 
-> :seedling: Garden is a design system for Zendesk
+> :seedling: Garden is the design system by Zendesk
 
 This repo contains the source code for the Garden Inspect browser extension.
 
@@ -50,6 +50,6 @@ conduct](.github/CODE_OF_CONDUCT.md). Please participate accordingly.
 
 ## License
 
-Copyright 2020 Zendesk
+Copyright 2021 Zendesk
 
 Licensed under the [Apache License, Version 2.0](LICENSE.md)
