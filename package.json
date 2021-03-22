@@ -34,6 +34,6 @@
     "prettier-package-json": "2.1.3",
     "standard-version": "9.1.1",
     "typescript": "4.2.3",
-    "web-ext": "5.5.0"
+    "web-ext": "6.0.0"
   }
 }
