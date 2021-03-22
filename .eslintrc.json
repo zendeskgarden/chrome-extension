@@ -4,8 +4,7 @@
     "@zendeskgarden/eslint-config/plugins/notice",
     "@zendeskgarden/eslint-config/plugins/typescript",
     "@zendeskgarden/eslint-config/plugins/typescript-semantics",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "parserOptions": {
     "project": ["./tsconfig.json"]
