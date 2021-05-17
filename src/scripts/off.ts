@@ -28,7 +28,7 @@
 
   const uninspect = (doc: Document): void => {
     const selector = `[${ATTRIBUTE_GARDEN_ID}], [${ATTRIBUTE_GARDEN_CONTAINER_ID}]`;
-    const components = (doc.querySelectorAll(selector) as unknown) as HTMLElement[];
+    const components = doc.querySelectorAll(selector) as unknown as HTMLElement[];
 
     components.forEach(component => {
       removeHighlight(component);
