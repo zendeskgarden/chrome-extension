@@ -1,7 +1,7 @@
 {
   "name": "Zendesk Garden Inspect",
-  "description": "Inspect web pages for Zendesk Garden design system usage.",
   "version": "1.0.0",
+  "description": "Inspect web pages for Zendesk Garden design system usage.",
   "background": {
     "scripts": [
       "background.js"
