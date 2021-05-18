@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.140",
-    "@typescript-eslint/eslint-plugin": "4.23.0",
+    "@typescript-eslint/eslint-plugin": "4.24.0",
     "@typescript-eslint/parser": "4.24.0",
     "@zendeskgarden/eslint-config": "20.0.0",
     "@zendeskgarden/scripts": "0.1.11",
