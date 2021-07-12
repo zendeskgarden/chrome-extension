@@ -25,8 +25,10 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
         version().then(
           value => {
             chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
-            chrome.tabs.executeScript({ code: `window.GARDEN_VERSION = '${value}';` });
-            chrome.tabs.executeScript({ file: 'scripts/on.js' });
+            chrome.tabs
+              .executeScript({ code: `window.GARDEN_VERSION = '${value}';` })
+              .catch(console.error);
+            chrome.tabs.executeScript({ file: 'scripts/on.js' }).catch(console.error);
           },
           () => {
             chrome.storage.local.set({ [key]: false });
@@ -34,7 +36,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
         );
       } else {
         chrome.browserAction.setIcon({ path: 'images/off.png', tabId });
-        chrome.tabs.executeScript({ file: 'scripts/off.js' });
+        chrome.tabs.executeScript({ file: 'scripts/off.js' }).catch(console.error);
       }
     });
   };
