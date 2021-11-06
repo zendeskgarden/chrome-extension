@@ -40,7 +40,7 @@ jobs:
     <<: *executor
     steps:
       - *attach_workspace
-      - run: yarn webstore upload --source dist --extension-id gegnmdnjkodmkohdbljgjpaifiphnjig --auto-publish
+      - run: yarn chrome-webstore-upload upload --source dist --extension-id gegnmdnjkodmkohdbljgjpaifiphnjig --auto-publish
 
 workflows:
   main:
