@@ -30,9 +30,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
               .catch(console.error);
             chrome.tabs.executeScript({ file: 'scripts/on.js' }).catch(console.error);
           },
-          () => {
-            chrome.storage.local.set({ [key]: false });
-          }
+          async () => chrome.storage.local.set({ [key]: false })
         );
       } else {
         chrome.browserAction.setIcon({ path: 'images/off.png', tabId });

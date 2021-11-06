@@ -11,6 +11,7 @@
     "lint": "yarn lint:js && yarn lint:md",
     "lint:js": "eslint src/ --ext js,ts --max-warnings 0",
     "lint:md": "markdownlint README.md src/**/*.md",
+    "prepare": "yarn build",
     "start": "web-ext run --source-dir dist --target chromium --start-url garden.zendesk.com",
     "tag": "[ `git rev-parse --abbrev-ref HEAD` = 'main' ] && standard-version --no-verify",
     "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint",
