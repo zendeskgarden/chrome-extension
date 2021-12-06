@@ -2178,10 +2178,10 @@
     resolve-from "^5.0.0"
     rollup-pluginutils "^2.8.2"
 
-"@zendeskgarden/eslint-config@25.0.0":
-  version "25.0.0"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/eslint-config/-/eslint-config-25.0.0.tgz#54076c42ba6cccc7a93daa8f48b753ae49ff7595"
-  integrity sha512-ibHmaaNLqMDRwuxDWVeVwXmAIxqxZWpnTbQ6HxzR64An7vuJjf94dpy0fOuKIAOq18JWgsB9zh0ubpK5aRAwNw==
+"@zendeskgarden/eslint-config@26.0.0":
+  version "26.0.0"
+  resolved "https://registry.yarnpkg.com/@zendeskgarden/eslint-config/-/eslint-config-26.0.0.tgz#9be1679678e532bc3f3dafecbc4526e15850df28"
+  integrity sha512-0TV7DpIDT6yTqxxjO5juCEpzyCOigeazHVvxIqB9SHA3/1KI8stHU4clWUUn5loDvdqTVvhnNjloBiTuWqXmVA==
 
 "@zendeskgarden/scripts@1.4.0":
   version "1.4.0"
