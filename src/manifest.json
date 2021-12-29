@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Inspect web pages for Zendesk Garden design system usage.",
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "browser_action": {
@@ -26,10 +24,5 @@
     "128": "images/icon.png"
   },
   "manifest_version": 2,
-  "permissions": [
-    "activeTab",
-    "commands",
-    "storage",
-    "https://registry.npmjs.org/@zendeskgarden/react-theming"
-  ]
+  "permissions": ["activeTab", "storage", "https://registry.npmjs.org/@zendeskgarden/react-theming"]
 }
