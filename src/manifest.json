@@ -2,12 +2,12 @@
   "name": "Zendesk Garden Inspect",
   "version": "1.0.0",
   "description": "Inspect web pages for Zendesk Garden design system usage.",
-  "background": {
-    "service_worker": "background.js"
-  },
   "action": {
     "default_title": "Zendesk Garden Inspect",
     "default_icon": "images/off.png"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "commands": {
     "toggle-garden-inspect": {
@@ -19,10 +19,16 @@
     }
   },
   "homepage_url": "https://github.com/zendeskgarden/chrome-extension",
+  "host_permissions": [
+    "https://registry.npmjs.org/@zendeskgarden/react-theming"
+  ],
   "icons": {
     "128": "images/icon.png"
   },
   "manifest_version": 3,
-  "permissions": ["activeTab", "scripting", "storage"],
-  "host_permissions": ["https://registry.npmjs.org/@zendeskgarden/react-theming"]
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ]
 }
