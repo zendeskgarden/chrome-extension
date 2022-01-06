@@ -10,6 +10,7 @@
     "postinstall": "husky install",
     "lint": "yarn lint:js && yarn lint:md",
     "lint:js": "eslint src/ --ext js,ts --max-warnings 0",
+    "lint:manifest": "web-ext lint --source-dir dist",
     "lint:md": "markdownlint README.md src/**/*.md",
     "prepare": "yarn build",
     "start": "web-ext run --source-dir dist --target chromium --start-url garden.zendesk.com",

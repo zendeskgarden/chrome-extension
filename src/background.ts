@@ -20,21 +20,33 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
   };
 
   const execute = (on: boolean): void => {
+    const targetTabId = tabId === undefined ? chrome.tabs.TAB_ID_NONE : tabId;
+
     chrome.storage.local.set({ [key]: on }, () => {
       if (on) {
         version().then(
           value => {
-            chrome.browserAction.setIcon({ path: 'images/on.png', tabId });
-            void chrome.tabs.executeScript({ code: `window.GARDEN_VERSION = '${value}';` });
-            void chrome.tabs.executeScript({ file: 'scripts/on.js' });
+            chrome.action.setIcon({ path: 'images/on.png', tabId });
+            chrome.scripting.executeScript(
+              {
+                target: { tabId: targetTabId },
+                files: ['scripts/on.js']
+              },
+              () => {
+                chrome.tabs.sendMessage(targetTabId, { latestVersion: value });
+              }
+            );
           },
           () => {
             void chrome.storage.local.set({ [key]: false });
           }
         );
       } else {
-        chrome.browserAction.setIcon({ path: 'images/off.png', tabId });
-        void chrome.tabs.executeScript({ file: 'scripts/off.js' });
+        chrome.action.setIcon({ path: 'images/off.png', tabId });
+        void chrome.scripting.executeScript({
+          target: { tabId: targetTabId },
+          files: ['scripts/off.js']
+        });
       }
     });
   };
@@ -50,7 +62,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
   }
 };
 
-chrome.browserAction.onClicked.addListener(tab => {
+chrome.action.onClicked.addListener(tab => {
   gardenInspect(tab.id);
 });
 
