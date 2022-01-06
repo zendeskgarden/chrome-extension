@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/zendeskgarden/chrome-extension/compare/v1.0.0...v1.1.0) (2022-01-06)
+
+
+### Features
+
+* update to Manifest V3 ([#51](https://github.com/zendeskgarden/chrome-extension/issues/51)) ([a23b5ce](https://github.com/zendeskgarden/chrome-extension/commit/a23b5ce986efa4adbb7556bdc319a02015169f4f))
+
 ## [1.0.0](https://github.com/zendeskgarden/chrome-extension/compare/v0.3.0...v1.0.0) (2020-07-29)
 
 
