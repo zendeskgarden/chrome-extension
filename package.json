@@ -23,7 +23,7 @@
     "@types/chrome": "0.0.177",
     "@typescript-eslint/eslint-plugin": "5.10.1",
     "@typescript-eslint/parser": "5.10.1",
-    "@zendeskgarden/eslint-config": "26.0.0",
+    "@zendeskgarden/eslint-config": "27.0.0",
     "@zendeskgarden/scripts": "1.4.0",
     "chrome-webstore-upload-cli": "2.0.1",
     "eslint": "8.7.0",
