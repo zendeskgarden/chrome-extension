@@ -11,6 +11,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
   const version = async (): Promise<string> => {
     try {
       const response = await fetch('https://registry.npmjs.org/@zendeskgarden/react-theming');
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       const json = (await response.json()) as { 'dist-tags': { latest: string } };
 
       return json['dist-tags'].latest;
