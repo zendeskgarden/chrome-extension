@@ -34,7 +34,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
                 files: ['scripts/on.js']
               },
               () => {
-                chrome.tabs.sendMessage(targetTabId, { latestVersion: value });
+                void chrome.tabs.sendMessage(targetTabId, { latestVersion: value });
               }
             );
           },

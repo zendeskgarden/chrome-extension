@@ -19,23 +19,23 @@
     "watch": "yarn build --watch"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.18.9",
-    "@types/chrome": "0.0.193",
-    "@typescript-eslint/eslint-plugin": "5.32.0",
-    "@typescript-eslint/parser": "5.32.0",
+    "@babel/eslint-parser": "7.19.1",
+    "@types/chrome": "0.0.197",
+    "@typescript-eslint/eslint-plugin": "5.38.1",
+    "@typescript-eslint/parser": "5.38.1",
     "@zendeskgarden/eslint-config": "28.0.0",
     "@zendeskgarden/scripts": "1.4.0",
     "chrome-webstore-upload-cli": "2.1.0",
-    "eslint": "8.21.0",
+    "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-notice": "0.9.10",
     "husky": "8.0.1",
-    "markdownlint-cli": "0.32.1",
+    "markdownlint-cli": "0.32.2",
     "prettier": "2.7.1",
-    "prettier-package-json": "2.6.4",
+    "prettier-package-json": "2.7.0",
     "standard-version": "9.5.0",
-    "typescript": "4.7.4",
-    "web-ext": "7.1.1"
+    "typescript": "4.8.4",
+    "web-ext": "7.2.0"
   }
 }
