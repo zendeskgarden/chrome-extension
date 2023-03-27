@@ -27,6 +27,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
       if (on) {
         version().then(
           value => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             chrome.action.setIcon({ path: 'images/on.png', tabId });
             chrome.scripting.executeScript(
               {
@@ -43,6 +44,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
           }
         );
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         chrome.action.setIcon({ path: 'images/off.png', tabId });
         void chrome.scripting.executeScript({
           target: { tabId: targetTabId },
