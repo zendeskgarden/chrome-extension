@@ -21,8 +21,8 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.22.9",
     "@types/chrome": "0.0.242",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
+    "@typescript-eslint/eslint-plugin": "6.2.1",
+    "@typescript-eslint/parser": "6.2.1",
     "@zendeskgarden/eslint-config": "34.0.0",
     "@zendeskgarden/scripts": "1.4.3",
     "chrome-webstore-upload-cli": "2.2.2",
