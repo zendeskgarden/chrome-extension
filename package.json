@@ -19,6 +19,7 @@
     "watch": "yarn build --watch"
   },
   "devDependencies": {
+    "@babel/core": "7.22.9",
     "@babel/eslint-parser": "7.22.9",
     "@types/chrome": "0.0.242",
     "@typescript-eslint/eslint-plugin": "6.2.1",
