@@ -25,7 +25,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn
+          cache-version: '{{ .Environment.CACHE_VERSION }}'
       - persist_to_workspace:
           root: *workspace_root
           paths: .
@@ -34,13 +34,13 @@ jobs:
     <<: *executor
     steps:
       - *attach_workspace
-      - run: yarn test
+      - run: npm test
 
   publish:
     <<: *executor
     steps:
       - *attach_workspace
-      - run: yarn chrome-webstore-upload upload --source dist --extension-id gegnmdnjkodmkohdbljgjpaifiphnjig --auto-publish
+      - run: npm exec chrome-webstore-upload -- upload --source dist --extension-id gegnmdnjkodmkohdbljgjpaifiphnjig --auto-publish
 
 workflows:
   main:
