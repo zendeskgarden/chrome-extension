@@ -24,8 +24,7 @@ jobs:
     <<: *executor
     steps:
       - checkout
-      - node/install-packages:
-          cache-version: '{{ .Environment.CACHE_VERSION }}'
+      - node/install-packages
       - persist_to_workspace:
           root: *workspace_root
           paths: .
