@@ -27,8 +27,8 @@ on your system. After you clone this repo, run `npm i` to install
 dependencies needed for development. After installation, the following
 commands are available:
 
-- `npm run start` to run the browser extension.
-- `npm run test` to run package tests.
+- `npm start` to run the browser extension.
+- `npm test` to run package tests.
 - `npm run lint` to enforce consistent code conventions. Note this is run
   as a git `pre-commit` hook.
 - `npm run format` to enforce code style with opinionated formats. Note
@@ -48,7 +48,7 @@ commands are available:
    you apply an appropriate squashed [conventional
    commit](https://conventionalcommits.org/) message when it's time to
    merge to the main branch.
-1. If your changes result in a major modification, be sure alls
+1. If your changes result in a major modification, be sure all
    documentation is up-to-date.
 1. When your branch is ready, open a new pull request via GitHub.
    The repo [PR template](PULL_REQUEST_TEMPLATE.md) will guide you
