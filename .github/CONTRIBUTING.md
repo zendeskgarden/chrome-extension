@@ -27,8 +27,8 @@ on your system. After you clone this repo, run `npm i` to install
 dependencies needed for development. After installation, the following
 commands are available:
 
-- `npm run start` to run the browser extension.
-- `npm run test` to run package tests.
+- `npm start` to run the browser extension.
+- `npm test` to run package tests.
 - `npm run lint` to enforce consistent code conventions. Note this is run
   as a git `pre-commit` hook.
 - `npm run format` to enforce code style with opinionated formats. Note
