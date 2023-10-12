@@ -34,7 +34,7 @@ jobs:
     <<: *executor
     steps:
       - *attach_workspace
-      - run: npms test
+      - run: npm test
 
   publish:
     <<: *executor
