@@ -22,20 +22,20 @@ All changes are recorded in the [changelog](../CHANGELOG.md) file.
 
 ## Development Workflow
 
-Before you start, be sure [yarn](https://yarnpkg.com/en/) is installed
-on your system. After you clone this repo, run `yarn` to install
+Before you start, be sure NPM LTS is installed
+on your system. After you clone this repo, run `npm i` to install
 dependencies needed for development. After installation, the following
 commands are available:
 
-- `yarn start` to run the browser extension.
-- `yarn test` to run package tests.
-- `yarn lint` to enforce consistent code conventions. Note this is run
+- `npm run start` to run the browser extension.
+- `npm run test` to run package tests.
+- `npm run lint` to enforce consistent code conventions. Note this is run
   as a git `pre-commit` hook.
-- `yarn format` to enforce code style with opinionated formats. Note
+- `npm run format` to enforce code style with opinionated formats. Note
   this is run as a git `pre-commit` hook.
-- `yarn build` to compile source TS to distribution JS. The build runs
+- `npm run build` to compile source TS to distribution JS. The build runs
   as part of the initial install.
-- `yarn watch` to watch source files for changes and rebuild as needed.
+- `npm run watch` to watch source files for changes and rebuild as needed.
 
 ## Pull Request Workflow
 
@@ -48,7 +48,7 @@ commands are available:
    you apply an appropriate squashed [conventional
    commit](https://conventionalcommits.org/) message when it's time to
    merge to the main branch.
-1. If your changes result in a major modification, be sure all
+1. If your changes result in a major modification, be sure alls
    documentation is up-to-date.
 1. When your branch is ready, open a new pull request via GitHub.
    The repo [PR template](PULL_REQUEST_TEMPLATE.md) will guide you

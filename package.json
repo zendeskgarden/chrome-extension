@@ -5,18 +5,18 @@
   "scripts": {
     "prebuild": "mkdir -p dist && cp -r src/manifest.json src/images dist",
     "build": "tsc",
-    "format": "prettier-package-json --write && prettier-package-json --write src/manifest.json && yarn format:all --write",
+    "format": "prettier-package-json --write && prettier-package-json --write src/manifest.json && npm run format:all -- --write",
     "format:all": "prettier --log-level warn '**/*.{js,ts,json,md}' '!CHANGELOG.md' '!src/manifest.json' '!dist/**'",
     "postinstall": "husky install",
-    "lint": "yarn lint:js && yarn lint:md",
+    "lint": "npm run lint:js && npm run lint:md",
     "lint:js": "eslint src/ --ext js,ts --max-warnings 0",
     "lint:manifest": "web-ext lint --source-dir dist",
     "lint:md": "markdownlint README.md src/**/*.md",
-    "prepare": "yarn build",
+    "prepare": "npm run build",
     "start": "web-ext run --source-dir dist --target chromium --start-url garden.zendesk.com",
     "tag": "[ `git rev-parse --abbrev-ref HEAD` = 'main' ] && standard-version --no-verify",
-    "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint",
-    "watch": "yarn build --watch"
+    "test": "prettier-package-json --list-different && npm run format:all -- --check && npm run lint",
+    "watch": "npm run build -- --watch"
   },
   "devDependencies": {
     "@babel/core": "7.23.2",
