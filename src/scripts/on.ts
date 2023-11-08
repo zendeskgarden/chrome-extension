@@ -22,7 +22,7 @@
     version: string,
     latestVersion: string
   ): void => {
-    const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row'];
+    const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row', 'pane', 'pane.content'];
 
     if (!excludeIds.includes(id)) {
       let color;
