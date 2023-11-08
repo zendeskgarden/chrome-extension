@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/zendeskgarden/chrome-extension/compare/v1.1.0...v1.1.1) (2023-11-08)
+
+
+### Bug Fixes
+
+* filter pane content from inspect highlighting ([#104](https://github.com/zendeskgarden/chrome-extension/issues/104)) ([65619eb](https://github.com/zendeskgarden/chrome-extension/commit/65619eb44456e4e65cbe1be60a6cf8b38cd02672))
+
 ## [1.1.0](https://github.com/zendeskgarden/chrome-extension/compare/v1.0.0...v1.1.0) (2022-01-06)
 
 
