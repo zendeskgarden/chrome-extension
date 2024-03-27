@@ -7,7 +7,7 @@
     "build": "tsc",
     "format": "prettier-package-json --write && prettier-package-json --write src/manifest.json && npm run format:all -- --write",
     "format:all": "prettier --log-level warn '**/*.{js,ts,json,md}' '!CHANGELOG.md' '!src/manifest.json' '!dist/**'",
-    "postinstall": "husky install",
+    "postinstall": "husky",
     "lint": "npm run lint:js && npm run lint:md",
     "lint:js": "eslint src/ --ext js,ts --max-warnings 0",
     "lint:manifest": "web-ext lint --source-dir dist",
