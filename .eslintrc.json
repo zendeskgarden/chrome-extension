@@ -11,6 +11,6 @@
   },
   "rules": {
     "no-console": "off",
-    "node/no-unsupported-features/node-builtins": ["error", { "version": ">=10.0.0" }]
+    "n/no-unsupported-features/node-builtins": ["error", { "version": ">=21.0.0" }]
   }
 }
