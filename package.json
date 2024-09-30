@@ -20,18 +20,18 @@
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
-    "@types/chrome": "0.0.269",
+    "@types/chrome": "0.0.273",
     "@zendeskgarden/eslint-config": "42.0.0",
-    "@zendeskgarden/scripts": "2.4.1",
+    "@zendeskgarden/scripts": "2.4.2",
     "chrome-webstore-upload-cli": "3.3.1",
-    "eslint": "9.8.0",
+    "eslint": "9.11.1",
     "eslint-config-prettier": "9.1.0",
-    "husky": "9.1.4",
-    "markdownlint-cli": "0.41.0",
+    "husky": "9.1.6",
+    "markdownlint-cli": "0.42.0",
     "prettier": "3.3.3",
     "prettier-package-json": "2.8.0",
     "standard-version": "9.5.0",
-    "typescript": "5.5.4",
-    "web-ext": "8.2.0"
+    "typescript": "5.6.2",
+    "web-ext": "8.3.0"
   }
 }
