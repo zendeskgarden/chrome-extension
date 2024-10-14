@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/zendeskgarden/chrome-extension/compare/v1.1.1...v1.1.2) (2024-10-14)
+
+
+### Bug Fixes
+
+* bump current version fallback ([#124](https://github.com/zendeskgarden/chrome-extension/issues/124)) ([ae7f14e](https://github.com/zendeskgarden/chrome-extension/commit/ae7f14ee6c27be2b4bb890a87ad13c26cc805edd))
+
 ### [1.1.1](https://github.com/zendeskgarden/chrome-extension/compare/v1.1.0...v1.1.1) (2023-11-08)
 
 
