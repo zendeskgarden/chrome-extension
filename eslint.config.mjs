@@ -21,7 +21,8 @@ export default [
     files: ['src/**/*.ts'],
     rules: {
       'no-console': 'off',
-      'n/no-unsupported-features/node-builtins': ['error', { version: '>=21.0.0' }]
+      'n/no-unsupported-features/node-builtins': ['error', { version: '>=21.0.0' }],
+      '@typescript-eslint/no-deprecated': 'off' /* disable invalid `chrome` warnings */
     }
   }
 ];
