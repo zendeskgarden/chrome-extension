@@ -16,7 +16,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
 
       return json['dist-tags'].latest;
     } catch {
-      return '8.x';
+      return '9.x';
     }
   };
 
