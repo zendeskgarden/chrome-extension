@@ -14,7 +14,7 @@
     "lint:md": "markdownlint README.md src/**/*.md",
     "prepare": "npm run build",
     "start": "web-ext run --source-dir dist --target chromium --start-url garden.zendesk.com",
-    "tag": "[ `git rev-parse --abbrev-ref HEAD` = 'main' ] && standard-version --no-verify",
+    "tag": "[ `git rev-parse --abbrev-ref HEAD` = 'main' ] && commit-and-tag-version --no-verify --npmPublishHint 'true'",
     "test": "prettier-package-json --list-different && npm run format:all -- --check && npm run lint",
     "watch": "npm run build -- --watch"
   },
@@ -24,13 +24,13 @@
     "@zendeskgarden/eslint-config": "44.0.1",
     "@zendeskgarden/scripts": "2.4.2",
     "chrome-webstore-upload-cli": "3.3.1",
+    "commit-and-tag-version": "12.5.0",
     "eslint": "9.11.1",
     "eslint-config-prettier": "9.1.0",
     "husky": "9.1.6",
     "markdownlint-cli": "0.42.0",
     "prettier": "3.3.3",
     "prettier-package-json": "2.8.0",
-    "standard-version": "9.5.0",
     "typescript": "5.6.2",
     "web-ext": "8.3.0"
   }
