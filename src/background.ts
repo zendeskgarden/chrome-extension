@@ -11,7 +11,7 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
   const version = async (): Promise<string> => {
     try {
       const response = await fetch('https://registry.npmjs.org/@zendeskgarden/react-theming');
-      // eslint-disable-next-line @typescript-eslint/naming-convention
+      // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-unsafe-type-assertion
       const json = (await response.json()) as { 'dist-tags': { latest: string } };
 
       return json['dist-tags'].latest;
@@ -55,8 +55,8 @@ const gardenInspect = (tabId?: number, toggle?: boolean): void => {
   };
 
   if (toggle === undefined) {
-    chrome.storage.local.get(result => {
-      const on = result[key] === undefined ? true : !(result[key] as boolean);
+    chrome.storage.local.get<Record<string, boolean | undefined>>(result => {
+      const on = result[key] === undefined ? true : !result[key];
 
       execute(on);
     });
