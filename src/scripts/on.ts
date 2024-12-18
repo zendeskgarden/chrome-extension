@@ -70,7 +70,7 @@
     latestVersion: string
   ): void => {
     const componentSelector = `[${ATTRIBUTE_GARDEN_ID}]`;
-    const components = doc.querySelectorAll(componentSelector) as unknown as HTMLElement[];
+    const components = doc.querySelectorAll<HTMLElement>(componentSelector);
 
     components.forEach(element => {
       const id = element.getAttribute(ATTRIBUTE_GARDEN_ID);
@@ -84,7 +84,7 @@
     });
 
     const containerSelector = `[${ATTRIBUTE_GARDEN_CONTAINER_ID}]:not([${ATTRIBUTE_GARDEN_ID}])`;
-    const containers = doc.querySelectorAll(containerSelector) as unknown as HTMLElement[];
+    const containers = doc.querySelectorAll<HTMLElement>(containerSelector);
 
     containers.forEach(container => {
       const id = container.getAttribute(ATTRIBUTE_GARDEN_CONTAINER_ID);
