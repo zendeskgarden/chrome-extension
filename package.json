@@ -19,19 +19,19 @@
     "watch": "npm run build -- --watch"
   },
   "devDependencies": {
-    "@babel/core": "7.26.0",
-    "@types/chrome": "0.0.287",
+    "@babel/core": "7.28.5",
+    "@types/chrome": "0.1.32",
     "@zendeskgarden/eslint-config": "45.0.0",
-    "@zendeskgarden/scripts": "2.4.3",
-    "chrome-webstore-upload-cli": "3.3.1",
-    "commit-and-tag-version": "12.5.0",
-    "eslint": "9.17.0",
-    "eslint-config-prettier": "9.1.0",
+    "@zendeskgarden/scripts": "2.5.0",
+    "chrome-webstore-upload-cli": "3.5.0",
+    "commit-and-tag-version": "12.6.1",
+    "eslint": "9.39.1",
+    "eslint-config-prettier": "9.1.2",
     "husky": "9.1.7",
-    "markdownlint-cli": "0.43.0",
-    "prettier": "3.4.2",
+    "markdownlint-cli": "0.46.0",
+    "prettier": "3.7.4",
     "prettier-package-json": "2.8.0",
-    "typescript": "5.7.2",
-    "web-ext": "8.3.0"
+    "typescript": "5.9.3",
+    "web-ext": "8.10.0"
   }
 }
