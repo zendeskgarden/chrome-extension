@@ -26,7 +26,7 @@
     "chrome-webstore-upload-cli": "3.5.0",
     "commit-and-tag-version": "12.6.1",
     "eslint": "9.39.1",
-    "eslint-config-prettier": "9.1.2",
+    "eslint-config-prettier": "10.1.8",
     "husky": "9.1.7",
     "markdownlint-cli": "0.46.0",
     "prettier": "3.7.4",
