@@ -10,11 +10,11 @@
   const ATTRIBUTE_GARDEN_VERSION = 'data-garden-version';
   const ATTRIBUTE_GARDEN_CONTAINER_ID = 'data-garden-container-id';
   const ATTRIBUTE_GARDEN_CONTAINER_VERSION = 'data-garden-container-version';
-  const COLOR_CHROME = '#3091EC'; /* azure */
-  const COLOR_CONTAINER = '#B552E2'; /* purple */
-  const COLOR_CURRENT = '#43B324'; /* lime */
-  const COLOR_PAST = '#C72A1C'; /* crimson */
-  const COLOR_PREVIOUS = '#FFD424'; /* lemon */
+  const COLOR_CONTAINER = '#B276CD'; /* purple */
+  const COLOR_CURRENT = '#45B025'; /* lime */
+  const COLOR_NAVIGATION = '#3191EA'; /* azure */
+  const COLOR_PAST = '#BE4938'; /* crimson */
+  const COLOR_PREVIOUS = '#FFDC4F'; /* lemon */
 
   const addHighlight = (
     component: HTMLElement,
@@ -22,13 +22,21 @@
     version: string,
     latestVersion: string
   ): void => {
-    const excludeIds = ['chrome.main', 'grid.grid', 'grid.col', 'grid.row', 'pane', 'pane.content'];
+    const excludeIds = [
+      'chrome.main',
+      'grid.grid',
+      'grid.col',
+      'grid.row',
+      'navigation.main',
+      'pane',
+      'pane.content'
+    ];
 
     if (!excludeIds.includes(id)) {
       let color;
 
-      if (id.includes('chrome')) {
-        color = COLOR_CHROME;
+      if (id.includes('navigation') || id.includes('chrome')) {
+        color = COLOR_NAVIGATION;
       } else {
         const major = parseInt(version.split('.')[0], 10);
         const currentMajor = parseInt(latestVersion.split('.')[0], 10);
@@ -74,7 +82,10 @@
 
     components.forEach(element => {
       const id = element.getAttribute(ATTRIBUTE_GARDEN_ID);
-      const version = element.getAttribute(ATTRIBUTE_GARDEN_VERSION);
+      const version =
+        (id?.includes('navigation') ?? false)
+          ? '0.0.0' // navigation components do not have version attribute
+          : element.getAttribute(ATTRIBUTE_GARDEN_VERSION);
 
       if (id !== null && version !== null) {
         data.push({ id, version });
