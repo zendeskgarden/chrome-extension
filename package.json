@@ -21,7 +21,7 @@
   "devDependencies": {
     "@babel/core": "7.28.5",
     "@types/chrome": "0.1.32",
-    "@zendeskgarden/eslint-config": "45.0.0",
+    "@zendeskgarden/eslint-config": "47.0.0",
     "@zendeskgarden/scripts": "2.5.0",
     "chrome-webstore-upload-cli": "3.5.0",
     "commit-and-tag-version": "12.6.1",
