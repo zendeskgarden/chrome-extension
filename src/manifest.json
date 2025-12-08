@@ -1,6 +1,6 @@
 {
   "name": "Zendesk Garden Inspect",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Inspect web pages for Zendesk Garden design system usage.",
   "action": {
     "default_title": "Zendesk Garden Inspect",
