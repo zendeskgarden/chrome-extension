@@ -31,7 +31,7 @@
     "markdownlint-cli": "0.46.0",
     "prettier": "3.7.4",
     "prettier-package-json": "2.8.0",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "web-ext": "9.2.0"
   }
 }
