@@ -19,7 +19,7 @@
     "watch": "npm run build -- --watch"
   },
   "devDependencies": {
-    "@babel/core": "7.28.5",
+    "@babel/core": "7.29.6",
     "@types/chrome": "0.1.32",
     "@zendeskgarden/eslint-config": "47.0.0",
     "@zendeskgarden/scripts": "2.5.0",
