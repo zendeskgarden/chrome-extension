@@ -33,5 +33,10 @@
     "prettier-package-json": "2.8.0",
     "typescript": "5.9.3",
     "web-ext": "9.2.0"
+  },
+  "overrides": {
+    "fx-runner": {
+      "shell-quote": "1.12.0"
+    }
   }
 }
